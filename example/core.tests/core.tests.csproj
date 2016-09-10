@@ -71,9 +71,14 @@
     <Compile Include="ServerApplicationSettingsSpecs.cs" />
     <Compile Include="ClientApplicationSettingsSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedStaticSpecs.cs" />
     <Compile Include="StaticClientConsumerSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\core.examples\core.examples.csproj">
+      <Project>{0bacd22b-ba0f-418e-b7bd-b7935a4990e8}</Project>
+      <Name>core.examples</Name>
+    </ProjectReference>
     <ProjectReference Include="..\core\core.csproj">
       <Project>{f6591e2a-d01c-4a5a-83cc-286c302e8c1e}</Project>
       <Name>core</Name>

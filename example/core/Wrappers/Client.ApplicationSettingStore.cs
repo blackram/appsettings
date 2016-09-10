@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace core
+namespace core.Wrappers.Client
 {
-    public interface IApplicationSettingsGetter
+    sealed class ApplicationSettingStore
     {
-        string PathName { get; }
-        string Title { get; }
+        internal static ClientApplicationSettings Settings;
     }
 }
