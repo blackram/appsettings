@@ -8,10 +8,17 @@ namespace core.Wrappers.Client
 {
     public class ApplicationSettingsManager : IDisposable
     {
-        public void CreateApplicationSettings(bool designMode=false)
+
+        public void AssignApplicationSettings(bool designMode=false)
         {
             if (ApplicationSettingStore.Settings== null)
                 ApplicationSettingStore.Settings = new ClientApplicationSettings(new RawApplicationSettingsSource(), designMode);          
+        }
+
+        public void AssignApplicationSettings(ClientApplicationSettings applicationSettings)
+        {
+            if (ApplicationSettingStore.Settings == null)
+                ApplicationSettingStore.Settings = applicationSettings;  
         }
 
         public void Dispose()

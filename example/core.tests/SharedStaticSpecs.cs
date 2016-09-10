@@ -24,6 +24,11 @@ namespace core.tests
             SettingsManager = null;
         }
 
+        private void AssignSettingsToSettingsManager()
+        {
+            SettingsManager.AssignApplicationSettings(new ClientApplicationSettings(new RawApplicationSettingsSource()));
+        }
+
         [Fact]
         public void StoreInstanceOfManagerAndInitialiseStaticStorage()
         {
@@ -45,7 +50,7 @@ namespace core.tests
 
             // Act
 
-            manager.CreateApplicationSettings();
+            manager.AssignApplicationSettings(new ClientApplicationSettings(new RawApplicationSettingsSource()));
 
             // Assert
             
@@ -94,7 +99,7 @@ namespace core.tests
         {
             // Arrange
 
-            SettingsManager.CreateApplicationSettings();
+            AssignSettingsToSettingsManager();          
             
             // Act
 
@@ -117,17 +122,16 @@ namespace core.tests
         {
             // Arrange
 
-            SettingsManager.CreateApplicationSettings();
+            AssignSettingsToSettingsManager();
 
             // Act
 
             var updatedSettings = new Mock<IApplicationSettingsGetter>();
             updatedSettings.Setup(s => s.Title).Returns("McBoatFace");
-            SettingsManager.Refresh(updatedSettings.Object);
+            SettingsManager.Refresh(updatedSettings.Object);           
 
-            /*** call the create method again ***/
-            SettingsManager.CreateApplicationSettings(); 
-            
+            AssignSettingsToSettingsManager(); // call the create method again
+
             var testModel = new examples.ExampleModel();
 
             // Assert

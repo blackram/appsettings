@@ -8,14 +8,18 @@ using Client = core.Wrappers.Client;
 
 namespace core.examples
 {
+    /// <summary>
+    /// An example where a single model/controller initialises the application settings manager. In practice
+    /// the initialisation would be in a startup or global asax section.
+    /// </summary>
     public class BaseModel
     {
         protected IApplicationSettingsGetter ApplicationSettings => Client.ApplicationSettingsContainer.Settings;
         
         public BaseModel(bool designMode=false)
         {
-            var manager = new Wrappers.Client.ApplicationSettingsManager();
-            manager.CreateApplicationSettings(designMode);
+            var manager = new Client.ApplicationSettingsManager();
+            manager.AssignApplicationSettings(new ClientApplicationSettings(new RawApplicationSettingsSource(), designMode));
         }
     }
 }
