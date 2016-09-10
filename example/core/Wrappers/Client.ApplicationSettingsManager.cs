@@ -10,12 +10,18 @@ namespace core.Wrappers.Client
     {
         public void CreateApplicationSettings(bool designMode=false)
         {
-            ApplicationSettingStore.Settings = new ClientApplicationSettings(new RawApplicationSettingsSource(), designMode);          
+            if (ApplicationSettingStore.Settings== null)
+                ApplicationSettingStore.Settings = new ClientApplicationSettings(new RawApplicationSettingsSource(), designMode);          
         }
 
         public void Dispose()
         {
             ApplicationSettingStore.Settings = null;
-        }        
+        }
+
+        public void Refresh(IApplicationSettingsGetter newSettings)
+        {
+            ApplicationSettingStore.Settings.Refresh(newSettings);
+        }
     }
 }

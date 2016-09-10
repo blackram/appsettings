@@ -1,4 +1,5 @@
 ﻿using core.Wrappers.Client;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,6 +87,55 @@ namespace core.tests
             // Assert
 
             Assert.Equal("Mister Black", testModel.FirstLine);
+        }
+
+        [Fact]
+        public void SimulateADatabaseRefresh()
+        {
+            // Arrange
+
+            SettingsManager.CreateApplicationSettings();
+            
+            // Act
+
+            var updatedSettings = new Mock<IApplicationSettingsGetter>();
+            updatedSettings.Setup(s => s.Title).Returns("McBoatFace");
+            SettingsManager.Refresh(updatedSettings.Object);
+
+            var testModel = new examples.ExampleModel();
+
+            // Assert
+            
+            Assert.Equal("McBoatFace Black", testModel.FirstLine);
+            Assert.Equal("McBoatFace White", testModel.SecondLine);
+            
+            updatedSettings.Verify(s => s.Title, Times.Exactly(2));
+        }
+
+        [Fact]
+        public void OnceInitialisedStoreWillNotBeOverwrittenByCallToCreate()
+        {
+            // Arrange
+
+            SettingsManager.CreateApplicationSettings();
+
+            // Act
+
+            var updatedSettings = new Mock<IApplicationSettingsGetter>();
+            updatedSettings.Setup(s => s.Title).Returns("McBoatFace");
+            SettingsManager.Refresh(updatedSettings.Object);
+
+            /*** call the create method again ***/
+            SettingsManager.CreateApplicationSettings(); 
+            
+            var testModel = new examples.ExampleModel();
+
+            // Assert
+
+            Assert.Equal("McBoatFace Black", testModel.FirstLine);
+            Assert.Equal("McBoatFace White", testModel.SecondLine);
+
+            updatedSettings.Verify(s => s.Title, Times.Exactly(2));
         }
     }
 }
