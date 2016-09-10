@@ -8,34 +8,24 @@ namespace core
 {
     public class ClientApplicationSettings
     {
-        ReadWriteApplicationSettingsSource DesignModeSource;
-        ReadOnlyApplicationSettingsSource ReadOnlySource;
-        bool DesignMode;
+        ApplicationSettingsSource ApplicationSettingsSource;
 
         public ClientApplicationSettings(IApplicationSettingsGetter source, bool designMode= false)
         {
-            DesignMode = designMode;
-
-            if (DesignMode)
-                DesignModeSource = new ReadWriteApplicationSettingsSource(source);
+            if (designMode)
+                ApplicationSettingsSource = new ReadWriteApplicationSettingsSource(source);
             else
-                ReadOnlySource = new ReadOnlyApplicationSettingsSource(source);
+                ApplicationSettingsSource = new ReadOnlyApplicationSettingsSource(source);
         }
 
         public IApplicationSettingsGetter ApplicationSettings()
-        {               
-            if (DesignMode)
-                return DesignModeSource;
-            else
-                return ReadOnlySource;
+        {
+            return (IApplicationSettingsGetter)ApplicationSettingsSource;
         }
         
         public void Refresh(IApplicationSettingsGetter source)
         {
-            if (DesignMode)
-                DesignModeSource.Refresh(source);
-            else
-                ReadOnlySource.Refresh(source);
+            ApplicationSettingsSource.Refresh(source);
         }        
     }
 }
