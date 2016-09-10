@@ -21,9 +21,7 @@ namespace core.tests
         public void CanGetSetting()
         {
             // Arrange
-
-
-
+            
             // Act
 
             var settings = TestSettings.ApplicationSettings();
