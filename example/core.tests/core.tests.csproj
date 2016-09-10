@@ -67,8 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientSettingsContainerDesignModeSpecs.cs" />
-    <Compile Include="ClientSettingsContainerSpecs.cs" />
+    <Compile Include="ClientApplicationSettingsDesignModeSpecs.cs" />
+    <Compile Include="ServerApplicationSettingsSpecs.cs" />
+    <Compile Include="ClientApplicationSettingsSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

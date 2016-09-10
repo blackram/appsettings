@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationSettingsSource.cs" />
+    <Compile Include="ServerApplicationSettings.cs" />
     <Compile Include="ClientApplicationSettings.cs" />
     <Compile Include="RawApplicationSettingsSource.cs" />
     <Compile Include="IApplicationSettingsGetter.cs" />
