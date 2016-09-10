@@ -52,7 +52,7 @@ namespace core.tests
         }
 
         [Fact]
-        public void ExapleModelIsConfiguredStatically()
+        public void ExampleModelIsConfiguredStatically()
         {
             // Arrange
 
