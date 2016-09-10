@@ -12,6 +12,7 @@ namespace core
     public partial class RawApplicationSettingsSource : IApplicationSettingsGetter
     {
         public virtual string PathName => @"c:\Help\";
+        public virtual string Title => "Ms";
 
         //public bool IsConfigured => true;
 

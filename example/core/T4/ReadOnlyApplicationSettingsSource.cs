@@ -15,5 +15,12 @@ namespace core
                 return Source.PathName;
             }
         }
+        public string Title
+        {
+            get
+            {
+                return Source.Title;
+            }
+        }
     }
 }

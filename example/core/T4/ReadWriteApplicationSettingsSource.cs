@@ -22,6 +22,22 @@ namespace core
             {
                 localPathName = value;
             }
-        }        
+        }
+
+        private string localTitle = null;
+
+        public string Title
+        {
+            get
+            {
+                if (localTitle == null)
+                    localTitle = Source.Title;
+                return localTitle;
+            }
+            set
+            {
+                localTitle = value;
+            }
+        }
     }
 }

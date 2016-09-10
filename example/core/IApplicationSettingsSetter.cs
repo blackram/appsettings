@@ -9,5 +9,6 @@ namespace core
     public interface IApplicationSettingsSetter
     {
         string PathName { set; }
+        string Title { set; }
     }
 }
